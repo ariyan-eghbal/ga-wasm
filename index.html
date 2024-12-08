@@ -9,6 +9,7 @@
             padding: 20px;
             background: #000;
             color: white;
+            font-family:  Courier;
         }
         canvas {
             display: block;
@@ -39,6 +40,16 @@
             margin-left: 10px;
             text-align: right;
         }
+        .cc {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .cc a{
+            color: #44d7d7;
+            font-weight: bolder;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -59,6 +70,11 @@
             <input type="range" id="blue" min="0" max="1" step="0.01" value="1">
             <span class="value-display" id="blue-value">1.00</span>
         </div>
+    </div>
+    <div class="cc">
+    By <strong>Ariyan Eghbal</strong><br/>
+    Based on <a href="https://x.com/yuruyurau/status/1865420201086636376" target="_blank">this Tweet</a><br/>
+    Source: <a href="https://github.com/ariyan-eghbal/ga-wasm" target="_blank">https://github.com/ariyan-eghbal/ga-wasm</a>
     </div>
     <script type="module" src="./index.js"></script>
 </body>
