@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WebGL Generative Art</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: white;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: #000;
+        }
+        .controls {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 8px;
+        }
+        .slider-container {
+            margin: 10px 0;
+        }
+        .slider-container label {
+            display: inline-block;
+            width: 80px;
+        }
+        input[type="range"] {
+            width: 200px;
+            vertical-align: middle;
+        }
+        .value-display {
+            display: inline-block;
+            width: 50px;
+            margin-left: 10px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="controls">
+        <div class="slider-container">
+            <label>Red:</label>
+            <input type="range" id="red" min="0" max="1" step="0.01" value="1">
+            <span class="value-display" id="red-value">1.00</span>
+        </div>
+        <div class="slider-container">
+            <label>Green:</label>
+            <input type="range" id="green" min="0" max="1" step="0.01" value="1">
+            <span class="value-display" id="green-value">1.00</span>
+        </div>
+        <div class="slider-container">
+            <label>Blue:</label>
+            <input type="range" id="blue" min="0" max="1" step="0.01" value="1">
+            <span class="value-display" id="blue-value">1.00</span>
+        </div>
+    </div>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
