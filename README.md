@@ -1,6 +1,9 @@
 # ga-wasm
-Some Generative Arts in WebAssembly
-![Scheenshot](.assets/shot.jpg)
+
+<p align="center">
+  <img src=".assets/shot.jpg" alt="Screenshot"><br/>
+  <strong>Some Generative Arts in WebAssembly</strong>
+</p>
 
 # Compile 
 ## install WASM target
