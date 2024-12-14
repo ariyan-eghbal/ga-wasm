@@ -2,7 +2,7 @@ import init, { JellyFish, Nudibranch } from '../pkg/gagl_wasm.js';
 
 var animation_number = null;
 var art = null;
-const arts = {
+var arts = {
     "Jellyfish": {
         "class": JellyFish,
         "ref": "https://x.com/yuruyurau/status/1865420201086636376"
@@ -101,17 +101,26 @@ async function setup() {
     const container = document.getElementById('arts');
     const keys = Object.keys(arts);
     keys.forEach(title => {
-        const button = document.createElement('button');
+        const button = document.createElement('a');
         button.textContent = title;
-        button.addEventListener('click', e => {
-            run(title);
-        });
+        button.setAttribute('href', '#'+title);
         container.appendChild(button);
     });
 
+    function handleHash() {
+        const title = window.location.hash.slice(1);
+        if (title && Object.keys(arts).includes(title)) {
+            run(title);
+        }
+    }
+    
+    window.addEventListener('hashchange', handleHash);
+
     await init();
-    const random_title = keys[Math.floor(Math.random() * keys.length)];
-    run(random_title);
+    let title = window.location.hash.slice(1);
+    if (!title || !keys.includes(title))
+        title = keys[Math.floor(Math.random() * keys.length)];
+    run(title);
 }
 
 setup();
