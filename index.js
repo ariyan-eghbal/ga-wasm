@@ -1,4 +1,4 @@
-import init, { JellyFish, Nudibranch } from '../pkg/gagl_wasm.js';
+import init, { JellyFish, Nudibranch } from 'gagl_wasm.js';
 
 var animation_number = null;
 var art = null;
