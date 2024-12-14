@@ -1,7 +1,8 @@
 # ga-wasm
 
 <p align="center">
-  <img src=".assets/shot.jpg" alt="Screenshot"><br/>
+  <img src=".assets/shot_jellyfish.jpg" alt="Screenshot">
+  <img src=".assets/shot_nudibranch.jpg" alt="Screenshot"><br/>
   <strong>Some Generative Arts in WebAssembly</strong><br/>
   Based on <a href="https://x.com/yuruyurau/status/1865420201086636376" target="_blank">this Tweet</a>
 </p>
