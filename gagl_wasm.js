@@ -108,34 +108,34 @@ function takeFromExternrefTable0(idx) {
     return value;
 }
 
-const GenerativeArtFinalization = (typeof FinalizationRegistry === 'undefined')
+const JellyFishFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
-    : new FinalizationRegistry(ptr => wasm.__wbg_generativeart_free(ptr >>> 0, 1));
+    : new FinalizationRegistry(ptr => wasm.__wbg_jellyfish_free(ptr >>> 0, 1));
 
-export class GenerativeArt {
+export class JellyFish {
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        GenerativeArtFinalization.unregister(this);
+        JellyFishFinalization.unregister(this);
         return ptr;
     }
 
     free() {
         const ptr = this.__destroy_into_raw();
-        wasm.__wbg_generativeart_free(ptr, 0);
+        wasm.__wbg_jellyfish_free(ptr, 0);
     }
     /**
      * @param {number} width
      * @param {number} height
      */
     constructor(width, height) {
-        const ret = wasm.generativeart_new(width, height);
+        const ret = wasm.jellyfish_new(width, height);
         if (ret[2]) {
             throw takeFromExternrefTable0(ret[1]);
         }
         this.__wbg_ptr = ret[0] >>> 0;
-        GenerativeArtFinalization.register(this, this.__wbg_ptr, this);
+        JellyFishFinalization.register(this, this.__wbg_ptr, this);
         return this;
     }
     /**
@@ -144,10 +144,65 @@ export class GenerativeArt {
      * @param {number} b
      */
     set_color(r, g, b) {
-        wasm.generativeart_set_color(this.__wbg_ptr, r, g, b);
+        wasm.jellyfish_set_color(this.__wbg_ptr, r, g, b);
     }
     draw() {
-        wasm.generativeart_draw(this.__wbg_ptr);
+        wasm.jellyfish_draw(this.__wbg_ptr);
+    }
+    stop() {
+        wasm.jellyfish_destroy(this.__wbg_ptr);
+    }
+    destroy() {
+        wasm.jellyfish_destroy(this.__wbg_ptr);
+    }
+}
+
+const NudibranchFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_nudibranch_free(ptr >>> 0, 1));
+
+export class Nudibranch {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        NudibranchFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_nudibranch_free(ptr, 0);
+    }
+    /**
+     * @param {number} width
+     * @param {number} height
+     */
+    constructor(width, height) {
+        const ret = wasm.nudibranch_new(width, height);
+        if (ret[2]) {
+            throw takeFromExternrefTable0(ret[1]);
+        }
+        this.__wbg_ptr = ret[0] >>> 0;
+        NudibranchFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} r
+     * @param {number} g
+     * @param {number} b
+     */
+    set_color(r, g, b) {
+        wasm.nudibranch_set_color(this.__wbg_ptr, r, g, b);
+    }
+    draw() {
+        wasm.nudibranch_draw(this.__wbg_ptr);
+    }
+    stop() {
+        wasm.nudibranch_destroy(this.__wbg_ptr);
+    }
+    destroy() {
+        wasm.nudibranch_destroy(this.__wbg_ptr);
     }
 }
 
@@ -239,6 +294,9 @@ function __wbg_get_imports() {
     };
     imports.wbg.__wbg_enableVertexAttribArray_211547224fc25327 = function(arg0, arg1) {
         arg0.enableVertexAttribArray(arg1 >>> 0);
+    };
+    imports.wbg.__wbg_error_1bc81209c2d2f63f = function(arg0, arg1) {
+        console.error(getStringFromWasm0(arg0, arg1));
     };
     imports.wbg.__wbg_getAttribLocation_a3fffeb134874426 = function(arg0, arg1, arg2, arg3) {
         const ret = arg0.getAttribLocation(arg1, getStringFromWasm0(arg2, arg3));
