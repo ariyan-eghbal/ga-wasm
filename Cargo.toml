@@ -18,6 +18,7 @@ features = [
     'Element',
     'HtmlCanvasElement',
     'WebGl2RenderingContext',
+    'WebGlRenderingContext',
     'WebGlBuffer',
     'WebGlProgram',
     'WebGlShader',

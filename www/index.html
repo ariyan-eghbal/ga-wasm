@@ -50,10 +50,24 @@
             font-weight: bolder;
             text-decoration: none;
         }
+        #arts{
+            text-align: center;
+        }
+        #arts button{
+            margin: 20px 5px;
+            padding: 10px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
+    <div id="arts">
+    </div>
+    <div id="canvas_container">
+    </div>
     <div class="controls">
         <div class="slider-container">
             <label>Red:</label>
@@ -72,9 +86,9 @@
         </div>
     </div>
     <div class="cc">
-    By <strong>Ariyan Eghbal</strong><br/>
-    Based on <a href="https://x.com/yuruyurau/status/1865420201086636376" target="_blank">this Tweet</a><br/>
-    Source: <a href="https://github.com/ariyan-eghbal/ga-wasm" target="_blank">https://github.com/ariyan-eghbal/ga-wasm</a>
+    <div>By <strong>Ariyan Eghbal</strong></div>
+    <div id='ref_line' style="display: none;">Based on <a href="#" id="ref" target="_blank">THIS</a></div>
+    <div>Source: <a href="https://github.com/ariyan-eghbal/ga-wasm" target="_blank">https://github.com/ariyan-eghbal/ga-wasm</a></div>
     </div>
     <script type="module" src="./index.js"></script>
 </body>
