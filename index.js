@@ -1,4 +1,9 @@
-import init, { JellyFish, Nudibranch, HeartController } from './gagl_wasm.js';
+import init, {
+  JellyFish,
+  Nudibranch,
+  HeartController,
+  PlanetaryTimer,
+} from './gagl_wasm.js';
 
 var animation_number = null;
 var art = null;
@@ -20,6 +25,12 @@ var arts = {
     ref: null,
     text: '<span style="color: rgb(255, 0.0, 74);">For my dearest <strong>Ghasedak</strong></span>',
     color: [1.0, 0.0, 0.29],
+  },
+  PlanetaryTimer: {
+    class: PlanetaryTimer,
+    ref: 'https://x.com/YoheiNishitsuji/status/1908486028018753622',
+    text: null,
+    color: [0.0, 0.0, 0.0],
   },
 };
 

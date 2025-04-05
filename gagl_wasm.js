@@ -276,6 +276,62 @@ export class Nudibranch {
     }
 }
 
+const PlanetaryTimerFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_planetarytimer_free(ptr >>> 0, 1));
+
+export class PlanetaryTimer {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        PlanetaryTimerFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_planetarytimer_free(ptr, 0);
+    }
+    /**
+     * @param {number} width
+     * @param {number} height
+     */
+    constructor(width, height) {
+        const ret = wasm.planetarytimer_new(width, height);
+        if (ret[2]) {
+            throw takeFromExternrefTable0(ret[1]);
+        }
+        this.__wbg_ptr = ret[0] >>> 0;
+        PlanetaryTimerFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} width
+     * @param {number} height
+     */
+    resize(width, height) {
+        wasm.planetarytimer_resize(this.__wbg_ptr, width, height);
+    }
+    draw() {
+        wasm.planetarytimer_draw(this.__wbg_ptr);
+    }
+    /**
+     * @param {number} r
+     * @param {number} g
+     * @param {number} b
+     */
+    set_color(r, g, b) {
+        wasm.planetarytimer_set_color(this.__wbg_ptr, r, g, b);
+    }
+    stop() {
+        wasm.planetarytimer_destroy(this.__wbg_ptr);
+    }
+    destroy() {
+        wasm.planetarytimer_destroy(this.__wbg_ptr);
+    }
+}
+
 async function __wbg_load(module, imports) {
     if (typeof Response === 'function' && module instanceof Response) {
         if (typeof WebAssembly.instantiateStreaming === 'function') {
@@ -505,6 +561,9 @@ function __wbg_get_imports() {
     };
     imports.wbg.__wbg_vertexAttribPointer_550dc34903e3d1ea = function(arg0, arg1, arg2, arg3, arg4, arg5, arg6) {
         arg0.vertexAttribPointer(arg1 >>> 0, arg2, arg3 >>> 0, arg4 !== 0, arg5, arg6);
+    };
+    imports.wbg.__wbg_viewport_e615e98f676f2d39 = function(arg0, arg1, arg2, arg3, arg4) {
+        arg0.viewport(arg1, arg2, arg3, arg4);
     };
     imports.wbg.__wbg_width_5dde457d606ba683 = function(arg0) {
         const ret = arg0.width;
