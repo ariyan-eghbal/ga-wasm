@@ -36,6 +36,7 @@ Y &= \frac{1}{2} \cdot \left(\frac{y}{4} + 5o^2 + q \cdot \cos(3c)\right) \cdot 
 $$
 
 **Animation**
+
 $$
 \begin{align*}
 &t_n = t_{n-1} + \frac{\pi}{60} \\
