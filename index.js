@@ -3,7 +3,8 @@ import init, {
   Nudibranch,
   HeartController,
   PlanetaryTimer,
-} from './gagl_wasm.js';
+  ChristmasTree,
+} from '../pkg/gagl_wasm.js';
 
 var animation_number = null;
 var art = null;
@@ -31,6 +32,12 @@ var arts = {
     ref: 'https://x.com/YoheiNishitsuji/status/1908486028018753622',
     text: null,
     color: [0.0, 0.0, 0.0],
+  },
+  ChristmasTree: {
+    class: ChristmasTree,
+    ref: 'https://x.com/YoheiNishitsuji/status/2004007970242547892',
+    text: null,
+    color: [1.0, 1.0, 1.0],
   },
 };
 
