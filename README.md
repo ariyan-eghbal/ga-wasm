@@ -4,7 +4,9 @@
   <img src=".assets/shot_jellyfish.jpg" alt="Screenshot" height="350">
   <img src=".assets/shot_nudibranch.jpg" alt="Screenshot" height="350">
   <img src=".assets/shot_heartbeat.jpg" alt="Screenshot" height="350">
-  <img src=".assets/shot_planetarytimer.jpg" alt="Screenshot" height="350"><br/>
+  <img src=".assets/shot_planetarytimer.jpg" alt="Screenshot" height="350">
+  <img src=".assets/shot_christmastree.jpg" alt="Screenshot" height="350">
+  <br/>
   <strong>Some Generative Arts in WebAssembly</strong><br/>
 </p>
 
