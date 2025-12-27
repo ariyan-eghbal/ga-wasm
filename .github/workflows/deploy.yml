@@ -1,0 +1,67 @@
+name: Build and Deploy WASM
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo index
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.os }}-cargo-git-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache target directory
+        uses: actions/cache@v4
+        with:
+          path: target
+          key: ${{ runner.os }}-target-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install wasm-pack
+        uses: jetli/wasm-pack-action@v0.4.0
+        with:
+          version: 'latest'
+
+      - name: Build WASM
+        run: wasm-pack build --target web
+
+      - name: Prepare deployment files
+        run: |
+          mkdir -p deploy
+          # Copy only the 4 essential files
+          cp www/index.html deploy/
+          cp www/index.js deploy/
+          cp pkg/gagl_wasm.js deploy/
+          cp pkg/gagl_wasm_bg.wasm deploy/
+
+      - name: Apply cache-busting
+        run: |
+          cd deploy
+          HASH=$(git rev-parse --short HEAD)
+          sed -i "s#../pkg/gagl_wasm.js#./gagl_wasm.js#" index.js
+          sed -i "s/gagl_wasm.js/gagl_wasm.js?v=$HASH/" index.js
+          sed -i "s/index.js/index.js?v=$HASH/" index.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./deploy
+          publish_branch: githubpages
