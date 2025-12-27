@@ -126,6 +126,55 @@ function takeFromExternrefTable0(idx) {
     return value;
 }
 
+const ChristmasTreeFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_christmastree_free(ptr >>> 0, 1));
+
+export class ChristmasTree {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        ChristmasTreeFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_christmastree_free(ptr, 0);
+    }
+    /**
+     * @param {number} width
+     * @param {number} height
+     */
+    constructor(width, height) {
+        const ret = wasm.christmastree_new(width, height);
+        if (ret[2]) {
+            throw takeFromExternrefTable0(ret[1]);
+        }
+        this.__wbg_ptr = ret[0] >>> 0;
+        ChristmasTreeFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} r
+     * @param {number} g
+     * @param {number} b
+     */
+    set_color(r, g, b) {
+        wasm.christmastree_set_color(this.__wbg_ptr, r, g, b);
+    }
+    draw() {
+        wasm.christmastree_draw(this.__wbg_ptr);
+    }
+    stop() {
+        wasm.christmastree_destroy(this.__wbg_ptr);
+    }
+    destroy() {
+        wasm.christmastree_destroy(this.__wbg_ptr);
+    }
+}
+
 const HeartControllerFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_heartcontroller_free(ptr >>> 0, 1));
@@ -171,10 +220,10 @@ export class HeartController {
         wasm.heartcontroller_set_color(this.__wbg_ptr, r, g, b);
     }
     stop() {
-        wasm.heartcontroller_destroy(this.__wbg_ptr);
+        wasm.christmastree_destroy(this.__wbg_ptr);
     }
     destroy() {
-        wasm.heartcontroller_destroy(this.__wbg_ptr);
+        wasm.christmastree_destroy(this.__wbg_ptr);
     }
 }
 
@@ -220,10 +269,10 @@ export class JellyFish {
         wasm.jellyfish_draw(this.__wbg_ptr);
     }
     stop() {
-        wasm.jellyfish_destroy(this.__wbg_ptr);
+        wasm.christmastree_destroy(this.__wbg_ptr);
     }
     destroy() {
-        wasm.jellyfish_destroy(this.__wbg_ptr);
+        wasm.christmastree_destroy(this.__wbg_ptr);
     }
 }
 
@@ -269,10 +318,10 @@ export class Nudibranch {
         wasm.nudibranch_draw(this.__wbg_ptr);
     }
     stop() {
-        wasm.jellyfish_destroy(this.__wbg_ptr);
+        wasm.christmastree_destroy(this.__wbg_ptr);
     }
     destroy() {
-        wasm.jellyfish_destroy(this.__wbg_ptr);
+        wasm.christmastree_destroy(this.__wbg_ptr);
     }
 }
 
@@ -325,10 +374,10 @@ export class PlanetaryTimer {
         wasm.planetarytimer_set_color(this.__wbg_ptr, r, g, b);
     }
     stop() {
-        wasm.planetarytimer_destroy(this.__wbg_ptr);
+        wasm.christmastree_destroy(this.__wbg_ptr);
     }
     destroy() {
-        wasm.planetarytimer_destroy(this.__wbg_ptr);
+        wasm.christmastree_destroy(this.__wbg_ptr);
     }
 }
 
