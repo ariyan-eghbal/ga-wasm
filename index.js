@@ -4,7 +4,7 @@ import init, {
   HeartController,
   PlanetaryTimer,
   ChristmasTree,
-} from './gagl_wasm.js';
+} from './gagl_wasm.js?v=ac352d3';
 
 var animation_number = null;
 var art = null;
