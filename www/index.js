@@ -4,6 +4,7 @@ import init, {
   HeartController,
   PlanetaryTimer,
   ChristmasTree,
+  Golfed1,
 } from '../pkg/gagl_wasm.js';
 
 var animation_number = null;
@@ -36,6 +37,12 @@ var arts = {
   ChristmasTree: {
     class: ChristmasTree,
     ref: 'https://x.com/YoheiNishitsuji/status/2004007970242547892',
+    text: null,
+    color: [1.0, 1.0, 1.0],
+  },
+  Golfed1: {
+    class: Golfed1,
+    ref: 'https://x.com/XorDev/status/2015813875833225715',
     text: null,
     color: [1.0, 1.0, 1.0],
   },
