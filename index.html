@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>WebGL Algorithmic Art</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: white;
+            font-family:  Courier;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: #000;
+        }
+        .controls {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 8px;
+        }
+        .slider-container {
+            margin: 10px 0;
+        }
+        .slider-container label {
+            display: inline-block;
+            width: 80px;
+        }
+        input[type="range"] {
+            width: 200px;
+            vertical-align: middle;
+        }
+        .value-display {
+            display: inline-block;
+            width: 50px;
+            margin-left: 10px;
+            text-align: right;
+        }
+        .cc {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .cc a{
+            color: #44d7d7;
+            font-weight: bolder;
+            text-decoration: none;
+        }
+        #arts{
+            text-align: center;
+        }
+        #arts a{
+            display: inline-block;
+            text-decoration: none;
+            margin: 20px 5px;
+            padding: 10px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="arts">
+    </div>
+    <div id="canvas_container">
+    </div>
+    <div class="controls">
+        <div class="slider-container">
+            <label>Red:</label>
+            <input type="range" id="red" min="0" max="1" step="0.01" value="1">
+            <span class="value-display" id="red-value">1.00</span>
+        </div>
+        <div class="slider-container">
+            <label>Green:</label>
+            <input type="range" id="green" min="0" max="1" step="0.01" value="1">
+            <span class="value-display" id="green-value">1.00</span>
+        </div>
+        <div class="slider-container">
+            <label>Blue:</label>
+            <input type="range" id="blue" min="0" max="1" step="0.01" value="1">
+            <span class="value-display" id="blue-value">1.00</span>
+        </div>
+    </div>
+    <div class="cc">
+    <div>By <strong>Ariyan Eghbal</strong></div>
+    <div id='text_line' style="display: none;"></div>
+    <div id='ref_line' style="display: none;">Based on <a href="#" id="ref" target="_blank">THIS</a></div>
+    <div>Source: <a href="https://github.com/ariyan-eghbal/ga-wasm" target="_blank">https://github.com/ariyan-eghbal/ga-wasm</a></div>
+    </div>
+    <script type="module" src="./index.js?v=1d8a7e4"></script>
+</body>
+</html>
