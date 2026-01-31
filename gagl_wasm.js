@@ -44,6 +44,50 @@ export class ChristmasTree {
 }
 if (Symbol.dispose) ChristmasTree.prototype[Symbol.dispose] = ChristmasTree.prototype.free;
 
+export class Eclipse {
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        EclipseFinalization.unregister(this);
+        return ptr;
+    }
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_eclipse_free(ptr, 0);
+    }
+    destroy() {
+        wasm.christmastree_destroy(this.__wbg_ptr);
+    }
+    draw() {
+        wasm.eclipse_draw(this.__wbg_ptr);
+    }
+    /**
+     * @param {number} width
+     * @param {number} height
+     */
+    constructor(width, height) {
+        const ret = wasm.eclipse_new(width, height);
+        if (ret[2]) {
+            throw takeFromExternrefTable0(ret[1]);
+        }
+        this.__wbg_ptr = ret[0] >>> 0;
+        EclipseFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} r
+     * @param {number} g
+     * @param {number} b
+     */
+    set_color(r, g, b) {
+        wasm.christmastree_set_color(this.__wbg_ptr, r, g, b);
+    }
+    stop() {
+        wasm.christmastree_destroy(this.__wbg_ptr);
+    }
+}
+if (Symbol.dispose) Eclipse.prototype[Symbol.dispose] = Eclipse.prototype.free;
+
 export class Golfed1 {
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
@@ -517,6 +561,9 @@ function __wbg_get_imports() {
 const ChristmasTreeFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_christmastree_free(ptr >>> 0, 1));
+const EclipseFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_eclipse_free(ptr >>> 0, 1));
 const Golfed1Finalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_golfed1_free(ptr >>> 0, 1));

@@ -5,7 +5,7 @@ import init, {
   PlanetaryTimer,
   ChristmasTree,
   Golfed1,
-} from './gagl_wasm.js?v=1d8a7e4';
+} from './gagl_wasm.js?v=02bd533';
 
 var animation_number = null;
 var art = null;
