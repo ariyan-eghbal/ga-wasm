@@ -5,7 +5,8 @@ import init, {
   PlanetaryTimer,
   ChristmasTree,
   Golfed1,
-} from '../pkg/gagl_wasm.js';
+  Eclipse,
+} from './gagl_wasm.js';
 
 var animation_number = null;
 var art = null;
@@ -43,6 +44,12 @@ var arts = {
   Golfed1: {
     class: Golfed1,
     ref: 'https://x.com/XorDev/status/2015813875833225715',
+    text: null,
+    color: [1.0, 1.0, 1.0],
+  },
+  Eclipse: {
+    class: Eclipse,
+    ref: 'https://x.com/XorDev/status/2016909652387123492',
     text: null,
     color: [1.0, 1.0, 1.0],
   },
